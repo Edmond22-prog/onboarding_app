@@ -39,8 +39,9 @@ class SliderPage extends StatelessWidget {
             child: Text(
               description,
               style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.normal,
+                fontSize: 16,
+                color: Colors.blueGrey,
+                fontWeight: FontWeight.normal
               ),
               textAlign: TextAlign.left,
             ),

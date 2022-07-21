@@ -64,25 +64,35 @@ class _HomeState extends State<Home> {
                 controller: _controller,
                 count: _pages.length,
                 effect: const ExpandingDotsEffect(
-                  dotHeight: 10,
-                  dotWidth: 10
-                ),
+                    dotHeight: 10,
+                    dotWidth: 12,
+                    activeDotColor: Color(0xff33cc9f),
+                    dotColor: Color(0xffccf2e7)),
               ),
-              const SizedBox(height: 40,),
+              const SizedBox(
+                height: 40,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 20, bottom: 30),
-                    child:
-                        TextButton(onPressed: () {}, child: const Text("Skip")),
+                    child: TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Skip",
+                          style: TextStyle(
+                            color: Color(0xff4276a6),
+                            fontWeight: FontWeight.bold
+                          ),
+                        )),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 20, bottom: 30),
                     child: TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
-                          backgroundColor: Colors.greenAccent,
+                          backgroundColor: const Color(0xff33cc9f),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10))),
                       child: const Icon(Icons.arrow_forward_ios,
