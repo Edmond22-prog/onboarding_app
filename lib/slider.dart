@@ -13,7 +13,6 @@ class SliderPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Container(
-      // margin: const EdgeInsets.only(bottom: 90),
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

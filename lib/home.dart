@@ -30,12 +30,6 @@ class _HomeState extends State<Home> {
         image: "assets/onboard03.png")
   ];
 
-  // _onPageChanged (int index) {
-  //   setState((){
-  //     _currentPage = index;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -49,7 +43,9 @@ class _HomeState extends State<Home> {
       appBar: (_currentPage != 0)
           ? AppBar(
               leading: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  _controller.previousPage(duration: const Duration(seconds: 1), curve: Curves.easeOutQuint);
+                },
                 icon: const Icon(Icons.arrow_back),
                 color: Colors.black,
               ),
@@ -69,7 +65,6 @@ class _HomeState extends State<Home> {
               controller: _controller,
               itemCount: _pages.length,
               onPageChanged: (index) {
-                // Change le numéro de la page actuelle
                 setState(() {
                   _currentPage = index;
                 });
@@ -101,7 +96,9 @@ class _HomeState extends State<Home> {
                         Padding(
                           padding: EdgeInsets.only(left: width / 15),
                           child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _controller.jumpToPage(2);
+                              },
                               child: const Text(
                                 "Skip",
                                 style: TextStyle(
@@ -111,7 +108,9 @@ class _HomeState extends State<Home> {
                         Padding(
                           padding: EdgeInsets.only(right: width / 15),
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _controller.nextPage(duration: const Duration(seconds: 1), curve: Curves.easeOutQuint);
+                            },
                             style: TextButton.styleFrom(
                                 backgroundColor: color1,
                                 shape: RoundedRectangleBorder(
