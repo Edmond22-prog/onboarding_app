@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
     SliderPage(
         title: "Track your Journey",
         description:
-            "Track your train journey easliy and share with friends and family",
+            "Track your train journey easily and share with friends and family",
         image: "assets/onboard01.png"),
     SliderPage(
         title: "Real time notifications",
@@ -38,69 +38,101 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    const color1 = Color(0xff33cc9f);
+    const color2 = Color(0xff4276a6);
+    const color3 = Color(0xffccf2e7);
+
     return Scaffold(
-      body: Stack(
-        // Permet d'empiler des objets
+      appBar: (_currentPage != 0)
+          ? AppBar(
+              leading: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.arrow_back),
+                color: Colors.black,
+              ),
+              backgroundColor: Colors.white,
+              elevation: 0,
+            )
+          : AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+            ),
+      body: Column(
         children: [
-          PageView.builder(
-            scrollDirection: Axis.horizontal,
-            controller: _controller,
-            itemCount: _pages.length,
-            onPageChanged: (index) {
-              // Change le numéro de la page actuelle
-              setState(() {
-                _currentPage = index;
-              });
-              print("Current page index $index");
-            },
-            itemBuilder: (context, int index) {
-              return _pages[index];
-            },
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.7,
+            child: PageView.builder(
+              scrollDirection: Axis.horizontal,
+              controller: _controller,
+              itemCount: _pages.length,
+              onPageChanged: (index) {
+                // Change le numéro de la page actuelle
+                setState(() {
+                  _currentPage = index;
+                });
+                print("Current page index $index");
+              },
+              itemBuilder: (context, int index) {
+                return _pages[index];
+              },
+            ),
           ),
           Column(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               SmoothPageIndicator(
                 controller: _controller,
                 count: _pages.length,
                 effect: const ExpandingDotsEffect(
-                    dotHeight: 10,
-                    dotWidth: 12,
-                    activeDotColor: Color(0xff33cc9f),
-                    dotColor: Color(0xffccf2e7)),
+                    dotHeight: 8,
+                    dotWidth: 11,
+                    activeDotColor: color1,
+                    dotColor: color3),
               ),
               const SizedBox(
                 height: 40,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, bottom: 30),
-                    child: TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Skip",
-                          style: TextStyle(
-                            color: Color(0xff4276a6),
-                            fontWeight: FontWeight.bold
+              (_currentPage != 2)
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: width / 15),
+                          child: TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Skip",
+                                style: TextStyle(
+                                    color: color2, fontWeight: FontWeight.bold),
+                              )),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: width / 15),
+                          child: TextButton(
+                            onPressed: () {},
+                            style: TextButton.styleFrom(
+                                backgroundColor: color1,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                            child: const Icon(Icons.arrow_forward_ios,
+                                color: Colors.white),
                           ),
-                        )),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 20, bottom: 30),
-                    child: TextButton(
+                        )
+                      ],
+                    )
+                  : ElevatedButton(
                       onPressed: () {},
-                      style: TextButton.styleFrom(
-                          backgroundColor: const Color(0xff33cc9f),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10))),
-                      child: const Icon(Icons.arrow_forward_ios,
-                          color: Colors.white),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width / 3, vertical: height / 50),
+                        primary: color1,
+                      ),
+                      child: const Text("Get started"),
                     ),
-                  )
-                ],
-              ),
             ],
           )
         ],

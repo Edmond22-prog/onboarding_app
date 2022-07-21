@@ -13,14 +13,14 @@ class SliderPage extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 90),
+      // margin: const EdgeInsets.only(bottom: 90),
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
             image,
-            width: width * 0.8,
+            width: width * 0.6,
           ),
           const SizedBox(
             height: 40,
@@ -32,7 +32,7 @@ class SliderPage extends StatelessWidget {
             textAlign: TextAlign.left,
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 60),
